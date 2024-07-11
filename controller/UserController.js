@@ -30,6 +30,16 @@ const createUser = async(req,res)=>{
         res.status(500).json({error:error.message});
     }
 }
+const getUser = async(req,res)=>{
+    try{
+        const user = await User.find()
+        console.log("user found");
+        res.status(200).json(user)
+    }catch(error){
+      console.log("error fetching user",error)  
+      res.status(500).json({error:error.message});
+    }
+}
 const findUser = async(req,res)=>{
     try{
         const user = await User.findById(req.params.id);
@@ -81,5 +91,6 @@ module.exports = {
     createUser,
     findUser,
     updateUser, 
-    deleteUser
+    deleteUser,
+    getUser
 }

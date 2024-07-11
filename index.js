@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-// // allow url encoding
-// router.use(express.urlencoded({extened:true}));
+
 
 
 // define routes
@@ -26,6 +25,9 @@ app.use(express.json());
 app.listen(port, (req,res)=>{
     console.log(`Server is runnning on port ${port}`);
     console.log(`Database url is: ${dbconnection}`)
+})
+app.get('/',(req,res)=>{
+    res.send('Server is online');
 })
 
 // connect to db
