@@ -12,7 +12,7 @@ router.get('/finduser/:id',findUser)
 router.put('/updateuser/:id',updateUser)
 router.delete('/deleteuser/:id',deleteUser)
 router.get('/getallusers',getUser)
-router.post('/login',Login)
+router.get('/login',Login)
 
 
 
