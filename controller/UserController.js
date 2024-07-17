@@ -41,6 +41,25 @@ const getUser = async(req,res)=>{
       res.status(500).json({error:error.message});
     }
 }
+const Login = async(req, res)=>{
+    try{
+        const {email,password} = req.body;
+        const user = await User.findOne({email});
+        if(!user){
+            console.log("User not found");
+            return res.status(404).json({error:error.message});
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if(!isMatch){
+            console.log("Invalid credentials");
+            return res.status(400).json({error:error.message});
+        }
+    }catch(error){
+        return res.status(500).json({error:error.message});
+        console.log('User not found',err)
+
+    }
+}
 const findUser = async(req,res)=>{
     try{
         const user = await User.findById(req.params.id);
@@ -93,5 +112,6 @@ module.exports = {
     findUser,
     updateUser, 
     deleteUser,
-    getUser
+    getUser,
+    Login
 }

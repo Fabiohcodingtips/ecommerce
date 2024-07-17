@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const {createUser, findUser,deleteUser,updateUser, getUser} = require('../controller/UserController');
+const {createUser, findUser,deleteUser,updateUser, getUser, Login} = require('../controller/UserController');
 
 // allow url encoding
 router.use(express.urlencoded({extened:false}));
@@ -12,6 +12,7 @@ router.get('/finduser/:id',findUser)
 router.put('/updateuser/:id',updateUser)
 router.delete('/deleteuser/:id',deleteUser)
 router.get('/getallusers',getUser)
+router.post('/login',Login)
 
 
 
