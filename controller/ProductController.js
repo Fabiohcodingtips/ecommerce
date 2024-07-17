@@ -5,7 +5,7 @@ const Product = require ('../models/ProductModel');
 
 const createProduct = async(req,res)=>{
     try{
-        const {name,quantity,price,description} = req.body;
+        const {name,quantity,price,description,image} = req.body;
 
         const existingProduct = await Product.findOne({name});
 
@@ -18,7 +18,8 @@ const createProduct = async(req,res)=>{
                 name,
                 quantity,
                 price,
-                description
+                description,
+                image
 
             });
             res.status(201).json(newProduct);
@@ -61,12 +62,12 @@ const findProduct = async(req,res)=>{
 const updateProduct = async(req,res)=>{
     try{
         const product = await Product.findByIdAndUpdate(req.params.id,req.body);
-        if(!user){
+        if(!product){
             console.log("error in updating product");
             res.status(200).json({error:`product ${name} not updated`});
         }else{
         console.log("product updated successfully");
-        res.status(200).json(user)
+        res.status(200).json(product)
         // const updatedUser = await user.findById(id);
         }
     }catch(error){

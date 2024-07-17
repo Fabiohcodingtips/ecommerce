@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const User = require('../models/UserModel');
+const bcrypt = require('bcryptjs')
 
 
 
@@ -14,12 +15,12 @@ const createUser = async(req,res)=>{
             console.log("Email already exists");
             res.status(400).json({error:"Email already exists"});
         }else{
+            const hashedPassword = await bcrypt.hash(password, 10)
             const newUser = await User.create({
                 username,
                 email,
-                password,
-                phone, 
-                image
+                password:hashedPassword,
+                phone
             });
             res.status(201).json(newUser);
             console.log('user created successfully',newUser);
