@@ -15,11 +15,11 @@ const createUser = async(req,res)=>{
             console.log("Email already exists");
             res.status(400).json({error:"Email already exists"});
         }else{
-            const hashedPassword = await bcrypt.hash(password, 10)
+            // const hashedPassword = await bcrypt.hash(password, 10)
             const newUser = await User.create({
                 username,
                 email,
-                password:hashedPassword,
+                password,
                 phone
             });
             res.status(201).json(newUser);
