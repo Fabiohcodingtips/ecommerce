@@ -54,6 +54,9 @@ const Login = async(req, res)=>{
             console.log("Invalid credentials");
             return res.status(400).json({error:error.message});
         }
+        else{
+            res.json({message:"Logged in successfully",user})
+        }
     }catch(error){
         return res.status(500).json({error:error.message});
         console.log('User not found',err)
