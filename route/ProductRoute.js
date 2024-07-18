@@ -5,7 +5,7 @@ const {createProduct} = require('../controller/ProductController');
 const {getProduct,findProduct,updateProduct,deleteProduct} = require('../controller/ProductController');
 
 // allow url encoding
-router.use(express.urlencoded({extened:false}));
+router.use(express.urlencoded({extended:false}));
 
 // create new user
 router.post('/createproduct',createProduct)
